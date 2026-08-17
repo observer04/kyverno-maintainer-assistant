@@ -119,7 +119,6 @@ policy. Expected safety floor:
 ```text
 decision: escalate risk=high
 required: dependency.review, unit.all, human.dependency-review
-recommended: unit.cel.compiler
 ```
 
 The validation command is not authored by the model: it supplied only `unit.cel.compiler`; the

@@ -157,12 +157,11 @@ This is a deliberately small set. It demonstrates the architecture and exposes p
 The primary walkthrough case is a bounded, read-only capture of Kyverno PR #17067 at its real
 head revision `c5ee06b1c6a3ea99723cd4e9a41648ec6a6c4ee1`. It is a two-file Dependabot
 update from `cel-go` 0.30.0 to 0.31.0. The small diff is intentionally contrasted with its broad
-CEL runtime blast radius. The deterministic result is:
+CEL runtime blast radius. The stable deterministic safety floor is:
 
 ```text
 decision: escalate risk=high
 required: dependency.review, unit.all, human.dependency-review
-recommended: unit.cel.compiler
 escalation: required
 ```
 
