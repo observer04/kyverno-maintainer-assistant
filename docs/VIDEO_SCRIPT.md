@@ -1,4 +1,4 @@
-# Complete 4:30 Video Prompter
+# Complete 4:40 Video Prompter
 
 This is the **only file to use while recording**. Follow it from top to bottom. Text under **SAY**
 is spoken. Text under **PASTE** is copied into the visible terminal. Instructions in square brackets
@@ -96,70 +96,70 @@ clear
 
 **SAY**
 
-> Hi, I'm **[name]**, a final-year **[degree/discipline]** student focused on AI engineering,
-> backend systems, and security. I am especially interested in evaluating agents and engineering
-> the boundaries that make them dependable. That is what drew me to this Kyverno project.
+> Hi, I'm **[name]**, a final-year **[degree/discipline]** student working across AI, backend
+> systems, and security. What interested me was not adding AI to Kyverno, but helping maintainers
+> without giving an agent more trust than it needs.
 
 **SAY — TRANSITION**
 
-> First, here is the maintainer problem I am trying to solve.
+> That starts with a very practical maintainer problem.
 
 ---
 
-## 0:20–0:50 — Explain the maintainer problem
+## 0:20–1:04 — Explain the maintainer problem
 
 **SCREEN:** Official Kyverno issue #16665. Point briefly to the phase list; do not scroll through
 the whole issue.
 
 **SAY**
 
-> Kyverno maintainers repeatedly handle dependency updates, stale branches, test selection, issue
-> reproduction, and support questions. Individually routine, together they slow reviews.
+> Reviewing a change is not just reading its diff. A maintainer has to rebuild context: what part of
+> Kyverno it touches, which generated files or tests matter, whether existing checks belong to the
+> latest commit, and what is still uncertain. That work repeats across dependency PRs, stale
+> branches, and issue reports.
 >
-> The goal is not a chatbot or an autonomous merge bot. It is to reduce that queue safely. Every
-> task must answer: what changed, what can it affect, what should run, what action is justified, and
-> can a maintainer audit the conclusion?
+> The bottleneck is turning scattered evidence into the next safe action. Automating it badly would
+> only replace maintainer toil with bot noise. So the assistant must answer five things: what
+> changed, what could it affect, what should run, what is safe to do, and why?
 
 **SAY — TRANSITION**
 
-> Those five questions determine the architecture.
+> That is the problem this architecture answers.
 
 ---
 
-## 0:50–1:28 — Explain the architecture
+## 1:04–1:42 — Explain the architecture
 
 **SCREEN:** Rendered `docs/ARCHITECTURE.md`. Follow the diagram from left to right with the cursor.
 
 **SAY**
 
-> Pull-request text is untrusted, the model is fallible, and GitHub authority is privileged, so I
-> separated them. Evidence is bound to one exact commit. Kyverno rules establish a safety floor.
-> The model uses the official OpenAI Responses interface and narrow tools to inspect a pinned
-> checkout and query a versioned path-to-test catalog. It may request a target ID, never shell.
+> Repository content can mislead a model, and GitHub actions have consequences. So I separated
+> evidence, reasoning, and authority. Evidence is tied to one commit, rules set the safety floor,
+> and the model may only search a pinned checkout and select a reviewed test ID—never shell or a
+> GitHub action.
 >
-> Python resolves the fixed command, runs it offline, reconciles model judgment with rules, and
-> applies deny-by-default policy. The output is an auditable dry run; existing CI and reviews remain
-> authoritative.
+> Python runs the fixed test offline, policy decides what is allowed, and maintainers stay in
+> control.
 
 **SAY — SCOPE**
 
-> This vertical slice proves Phase 0 metadata, one Phase 2 diff-to-test path, and Phase 1 safety
-> groundwork. GitHub operation, rebase automation, issue reproduction, and Q&A remain future work.
+> This prototype proves that one path end to end. GitHub operation, issue reproduction, and Q&A
+> remain mentorship work.
 
 **SAY — TRANSITION**
 
-> Before asking for an answer, I will prove its operating boundary.
+> First, I will prove those boundaries.
 
 ---
 
-## 1:28–1:55 — Prove the boundary
+## 1:42–2:07 — Prove the boundary
 
 **SCREEN:** Visible terminal.
 
 **SAY BEFORE COMMAND**
 
-> An answer is meaningless if it used the wrong revision or hidden authority. This preflight checks
-> both.
+> First, I check the exact code and actual permissions.
 
 **PASTE**
 
@@ -188,22 +188,21 @@ selected-model: ok gpt-5.3-codex-spark
 
 **SAY AFTER OUTPUT**
 
-> The SHA identifies the exact PR version, so stale evidence cannot silently carry forward. The
-> catalog is versioned. Arbitrary shell and path traversal are unavailable, while test execution has
-> read-only source and no network. The host enforces these properties.
+> We have the exact commit and a versioned test catalog. There is no arbitrary shell, and tests get
+> read-only source with no network. The host—not the prompt—enforces that.
 
 **SAY — TRANSITION**
 
-> Now for the useful case.
+> Now I can analyze a real change.
 
 ---
 
-## 1:55–3:08 — Analyze a real Kyverno pull request
+## 2:07–3:31 — Analyze a real Kyverno pull request
 
 **SAY BEFORE COMMAND**
 
-> Real Kyverno PR 17067 updates `cel-go` from 0.30 to 0.31. Only two files change, but CEL is central
-> to Kyverno policy evaluation, so the blast radius is not small.
+> PR 17067 updates `cel-go`. It changes two files, but CEL sits in Kyverno's policy path, so the risk
+> is larger than the diff suggests.
 
 **PASTE**
 
@@ -219,8 +218,8 @@ uv run kma analyze-pr \
 
 **SAY WHILE THE MODEL AND TEST RUN**
 
-> The model is inspecting the pinned checkout, querying the catalog, and must run and cite one
-> relevant target. The model call is online; the test is offline and credential-free.
+> The model is investigating and choosing a catalog target. The test runs offline without
+> credentials.
 
 **WAIT:** Let the command finish. Do not speak over the final summary.
 
@@ -244,16 +243,16 @@ agent-trace: ... evidence calls ...
 
 **SAY AFTER OUTPUT**
 
-> The model selected `unit.cel.compiler`; the host resolved it to
-> `go test ./pkg/cel/compiler`. The trace proves it passed offline and records the cited observation.
+> The model selected the CEL compiler test, and it passed offline. That answers one narrow question,
+> not whether the PR should merge. The rules still require dependency review, the full unit gate,
+> and a human.
 >
-> Passing one scoped test is evidence, not merge permission. Kyverno rules still require dependency
-> review, the full unit gate, and a human. Broader runtime impact and missing release-note context
-> preserve high-risk escalation. The trace enters the audit record, and GitHub is not modified.
+> The assistant adds evidence without claiming authority. The trace is audited, and GitHub is
+> untouched.
 
 **SAY — TRANSITION**
 
-> Now assume the planner is influenced.
+> Now I assume the planner is compromised.
 
 **STOP CONDITION:** If the output says `PLANNER.UNAVAILABLE`, uses `planner: fixture`, lacks the
 passed validation line, or exits nonzero, stop the recording. Do not describe a fallback as a live
@@ -261,12 +260,11 @@ model run.
 
 ---
 
-## 3:08–3:42 — Demonstrate safe failure
+## 3:31–3:54 — Demonstrate safe failure
 
 **SAY BEFORE COMMAND**
 
-> This synthetic replay deliberately proposes revealing a secret and merging, ensuring both
-> requests reach the real policy boundary.
+> This replay asks for a secret and a merge, forcing both through policy.
 
 **PASTE**
 
@@ -294,17 +292,16 @@ transport: fixture
 
 **SAY AFTER OUTPUT**
 
-> Prompt injection is not solved here. Instead, a compromised planner cannot grant itself authority.
-> Secret access and merge are not executable tools, policy denies both, and the output remains a dry
-> run.
+> Prompt injection is not solved. The point is that the planner cannot grant itself new powers.
+> Both actions are unavailable and denied, so this stays a dry run.
 
 **SAY — TRANSITION**
 
-> Finally, I compare the design with simpler alternatives.
+> Finally, I compare the alternatives.
 
 ---
 
-## 3:42–4:08 — Compare the architecture
+## 3:54–4:12 — Compare the architecture
 
 **PASTE**
 
@@ -331,30 +328,27 @@ hybrid       1.0     0            0            0               10/10
 
 **SAY AFTER OUTPUT**
 
-> These ten applicant-annotated cases are not a production benchmark. Rules-only can miss semantic
-> nuance; model-only misses checks and proposes unsafe actions. The hybrid preserves the rule-based
-> safety floor while using the model for investigation. Next, maintainers should label a larger
-> shadow dataset.
+> These are architecture checks, not a production benchmark. Rules miss context; the model misses
+> safeguards. The hybrid gives each the job it does well. Maintainer-labeled shadow data comes next.
 
 **SAY — TRANSITION**
 
-> That leads to the mentorship roadmap.
+> That gives me the roadmap.
 
 ---
 
-## 4:08–4:35 — Roadmap and close
+## 4:12–4:40 — Roadmap and close
 
 **SCREEN:** Return to the architecture diagram, then camera for the final sentence.
 
 **SAY**
 
-> If selected, I would first validate the repository metadata and success metrics with maintainers.
-> Then I would add GitHub App, queue, and production sandbox scaffolding in shadow mode; expand
-> approved Go, CLI, codegen, and Chainsaw targets; and only then enable one reversible action. Issue
-> reproduction follows, with grounded Q&A as stretch work.
+> If selected, I would first validate the mappings with maintainers. Then I would add the GitHub App
+> and production sandbox in shadow mode, expand approved tests, and only then enable one reversible
+> action. Issue reproduction and grounded Q&A follow.
 >
-> The proposal is not to let an LLM maintain Kyverno. It is to make routine maintenance measurable
-> and evidence-driven, earning autonomy one permission at a time. Thank you.
+> The goal is to reduce repeated work while keeping evidence, permissions, and human judgment clear.
+> Thank you.
 
 ---
 
