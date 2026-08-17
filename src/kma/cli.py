@@ -87,7 +87,7 @@ def _planner(
     raise ValueError(f"unknown planner {name}")
 
 
-def _print_run(record, audit_path: Path) -> None:
+def _print_run(record, audit_path: Path, *, include_markdown: bool = True) -> None:
     subject = record.snapshot.fixture.subject
     print("Kyverno Maintainer Assistant — DRY RUN")
     print(f"run: {record.run_id}")
@@ -128,7 +128,7 @@ def _print_run(record, audit_path: Path) -> None:
                     f"network={observation.validation_network}"
                 )
     print(f"audit: {audit_path}")
-    if record.dry_run:
+    if include_markdown and record.dry_run:
         print("\n" + record.dry_run.rendered_markdown)
 
 
@@ -164,11 +164,21 @@ def build_parser() -> argparse.ArgumentParser:
     analyze = subparsers.add_parser("analyze-pr", help="Analyze a saved PR fixture")
     analyze.add_argument("--fixture", type=Path, required=True)
     analyze.add_argument("--runs", type=Path, default=DEFAULT_RUNS)
+    analyze.add_argument(
+        "--summary-only",
+        action="store_true",
+        help="Print the decision and evidence trace without the rendered dry-run comment",
+    )
     _add_planner_arguments(analyze)
 
     attack = subparsers.add_parser("replay-attack", help="Replay an adversarial fixture")
     attack.add_argument("--fixture", type=Path, required=True)
     attack.add_argument("--runs", type=Path, default=DEFAULT_RUNS)
+    attack.add_argument(
+        "--summary-only",
+        action="store_true",
+        help="Print the decision and evidence trace without the rendered dry-run comment",
+    )
     _add_planner_arguments(attack)
 
     evaluate = subparsers.add_parser("eval", help="Compare rules/model/hybrid variants")
@@ -214,7 +224,7 @@ def _run(args: argparse.Namespace) -> int:
             planner=planner,
             runs_directory=args.runs,
         )
-        _print_run(record, path)
+        _print_run(record, path, include_markdown=not args.summary_only)
         requested_live_model = args.planner in {"snapshot", "model", "agent"}
         planner_unavailable = record.planner.planner_type == "unavailable"
         return 0 if not record.errors and not (requested_live_model and planner_unavailable) else 2

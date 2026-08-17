@@ -27,6 +27,7 @@ def test_requested_live_planner_fallback_is_visible_and_nonzero(
         model="unavailable-probe",
         repo=tmp_path,
         transport="local-proxy",
+        summary_only=True,
     )
 
     exit_code = cli._run(args)
@@ -36,3 +37,18 @@ def test_requested_live_planner_fallback_is_visible_and_nonzero(
     assert "planner: unavailable" in output
     assert "planner-error: PLANNER.UNAVAILABLE" in output
     assert "provider detail must not leak" not in output
+    assert "<!-- kma:dry-run" not in output
+
+
+def test_summary_only_is_available_for_recorded_commands() -> None:
+    parser = cli.build_parser()
+
+    analyze = parser.parse_args(
+        ["analyze-pr", "--fixture", "fixture.json", "--summary-only"]
+    )
+    attack = parser.parse_args(
+        ["replay-attack", "--fixture", "fixture.json", "--summary-only"]
+    )
+
+    assert analyze.summary_only is True
+    assert attack.summary_only is True

@@ -57,7 +57,7 @@ uv run pytest
 Current verified result:
 
 ```text
-67 passed
+68 passed
 ```
 
 Prepare the exact public PR checkout and dependency cache once, before recording:
@@ -124,12 +124,13 @@ Export the versioned Pydantic contracts as JSON Schema:
 uv run kma export-schemas --output /tmp/kma-schemas
 ```
 
-For recording, use the [`docs/DEMO.md`](./docs/DEMO.md) runbook with the timed
-[`docs/VIDEO_SCRIPT.md`](./docs/VIDEO_SCRIPT.md), which includes the first-principles mental model,
-spoken script, transitions, and likely maintainer questions. The concise
-[`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md) explains the online-model/offline-validator
-boundary, while [`docs/MAINTAINER_GAP_REVIEW.md`](./docs/MAINTAINER_GAP_REVIEW.md) states exactly
-what is implemented and what remains mentorship work.
+For recording, use only the complete
+[`docs/VIDEO_SCRIPT.md`](./docs/VIDEO_SCRIPT.md). It contains the private preflight, screen
+directions, exact copy-paste commands, expected proof lines, spoken interpretation after every
+result, transitions, stop conditions, and the timed closing. The concise
+[`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md) and
+[`docs/MAINTAINER_GAP_REVIEW.md`](./docs/MAINTAINER_GAP_REVIEW.md) remain maintainer-facing design
+documents, not additional recording instructions.
 
 ## Current deterministic evaluation
 
@@ -173,8 +174,8 @@ namespace. The target ID, fixed argv digest, outcome, exit code, output digests,
 sandbox facts are recorded as a cited observation and bound into the final authorization.
 
 The release rehearsal completed that full trajectory through the official OpenAI Python SDK,
-localhost subscription adapter, and `gpt-5.3-codex-spark`; see
-[`docs/LIVE_RUN.md`](./docs/LIVE_RUN.md) for the disclosed route, run ID, and trace digest.
+localhost subscription adapter, and `gpt-5.3-codex-spark`. The complete verification command runs
+formatting checks, all 68 tests, the agent doctor, live analysis, hostile replay, and evaluation.
 
 ## Adversarial result
 
