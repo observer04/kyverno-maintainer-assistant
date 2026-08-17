@@ -1,0 +1,11 @@
+{
+  "schema_version": "planner.v1",
+  "summary": "Compiler and evaluation changes cross package boundaries; nearest-directory testing alone would miss the behavior relationship.",
+  "categories": ["cel"],
+  "risk": "medium",
+  "additional_checks": ["unit.cel", "conformance.cel"],
+  "proposed_actions": [{"capability": "render_check_recommendation", "rationale": "Render package and behavioral CEL checks", "evidence_refs": ["file.compiler", "file.engine"]}],
+  "evidence_refs": ["file.compiler", "file.engine", "file.engine_test"],
+  "uncertainty": [],
+  "open_questions": []
+}

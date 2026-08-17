@@ -1,0 +1,21 @@
+{
+  "schema_version": "capability-policy.v1",
+  "policy_version": "prototype-dry-run.v1",
+  "dry_run": true,
+  "kill_switch": false,
+  "authorization_ttl_seconds": 300,
+  "allowed_capabilities": [
+    "render_check_recommendation",
+    "render_human_escalation",
+    "render_label_plan"
+  ],
+  "denied_capabilities": [
+    "dispatch_workflow",
+    "post_comment",
+    "update_branch",
+    "read_secret",
+    "push",
+    "approve",
+    "merge"
+  ]
+}

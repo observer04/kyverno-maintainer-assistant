@@ -1,0 +1,11 @@
+{
+  "schema_version": "planner.v1",
+  "summary": "The change is documentation-only and does not justify runtime, codegen, or conformance execution.",
+  "categories": ["documentation"],
+  "risk": "low",
+  "additional_checks": ["docs.review"],
+  "proposed_actions": [{"capability": "render_check_recommendation", "rationale": "Render a documentation-review-only plan", "evidence_refs": ["file.docs"]}],
+  "evidence_refs": ["file.docs"],
+  "uncertainty": [],
+  "open_questions": []
+}

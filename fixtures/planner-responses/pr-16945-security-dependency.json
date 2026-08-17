@@ -1,0 +1,11 @@
+{
+  "schema_version": "planner.v1",
+  "summary": "A patch version does not make a security-motivated signature-verification dependency update routine.",
+  "categories": ["dependency", "security"],
+  "risk": "high",
+  "additional_checks": ["dependency.review", "unit.all", "human.dependency-review", "conformance.verify-images"],
+  "proposed_actions": [{"capability": "render_human_escalation", "rationale": "Require supply-chain security review", "evidence_refs": ["dep.cosign", "label.security"]}],
+  "evidence_refs": ["file.gomod", "dep.cosign", "label.security"],
+  "uncertainty": ["The fixture does not contain advisory exploitability analysis"],
+  "open_questions": []
+}

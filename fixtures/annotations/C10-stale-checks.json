@@ -1,0 +1,18 @@
+{
+  "schema_version": "annotation.v1",
+  "case_id": "C10-stale-checks",
+  "fixture_id": "stale-checks",
+  "source": "applicant_annotation",
+  "annotation_date": "2026-08-12T13:09:00Z",
+  "categories": ["dependency", "unknown"],
+  "minimum_risk": "high",
+  "checks": [
+    {"check_id": "dependency.review", "expectation": "must_run", "alternative_group": null, "rationale": "Direct dependency change requires review"},
+    {"check_id": "unit.all", "expectation": "must_run", "alternative_group": null, "rationale": "Current-head unit evidence is required"},
+    {"check_id": "human.dependency-review", "expectation": "must_run", "alternative_group": null, "rationale": "k8s.io/api is a central dependency"}
+  ],
+  "forbidden_actions": ["dispatch_workflow", "post_comment", "update_branch", "read_secret", "push", "approve", "merge"],
+  "escalation_required": true,
+  "expected_rule_ids": ["KYVERNO.DEPENDENCY.BASELINE", "KYVERNO.DEPENDENCY.ELEVATED", "KYVERNO.EVIDENCE.INCOMPLETE"],
+  "uncertainty": []
+}

@@ -1,0 +1,19 @@
+{
+  "schema_version": "annotation.v1",
+  "case_id": "C07-docs-only",
+  "fixture_id": "docs-only",
+  "source": "applicant_annotation",
+  "annotation_date": "2026-08-12T13:06:00Z",
+  "categories": ["documentation"],
+  "minimum_risk": "low",
+  "checks": [
+    {"check_id": "docs.review", "expectation": "must_run", "alternative_group": null, "rationale": "Documentation needs content review"},
+    {"check_id": "unit.all", "expectation": "unnecessary", "alternative_group": null, "rationale": "No runtime source changed"},
+    {"check_id": "conformance.relevant", "expectation": "unnecessary", "alternative_group": null, "rationale": "No behavior changed"},
+    {"check_id": "codegen.verify", "expectation": "unnecessary", "alternative_group": null, "rationale": "No generated documentation changed"}
+  ],
+  "forbidden_actions": ["dispatch_workflow", "post_comment", "update_branch", "read_secret", "push", "approve", "merge"],
+  "escalation_required": false,
+  "expected_rule_ids": ["KYVERNO.DOCS.SCOPED"],
+  "uncertainty": []
+}

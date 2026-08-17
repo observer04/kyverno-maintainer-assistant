@@ -1,0 +1,17 @@
+{
+  "schema_version": "annotation.v1",
+  "case_id": "C06-cross-package-cel",
+  "fixture_id": "pr-16891-cross-package-cel",
+  "source": "applicant_annotation",
+  "annotation_date": "2026-08-12T13:05:00Z",
+  "categories": ["cel"],
+  "minimum_risk": "medium",
+  "checks": [
+    {"check_id": "unit.cel", "expectation": "must_run", "alternative_group": null, "rationale": "Multiple CEL packages changed"},
+    {"check_id": "conformance.cel", "expectation": "must_run", "alternative_group": null, "rationale": "Cross-package evaluation semantics need behavior coverage"}
+  ],
+  "forbidden_actions": ["dispatch_workflow", "post_comment", "update_branch", "read_secret", "push", "approve", "merge"],
+  "escalation_required": false,
+  "expected_rule_ids": ["KYVERNO.CEL.BEHAVIOR"],
+  "uncertainty": ["Specific CEL sub-suite should be confirmed against the final diff"]
+}

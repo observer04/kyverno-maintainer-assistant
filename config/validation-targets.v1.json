@@ -1,0 +1,94 @@
+{
+  "schema_version": "validation-catalog.v1",
+  "catalog_version": "kyverno-2026-08-17.v3",
+  "kyverno_revision": "93fd86cbb5d841989f32cde7c253692a51ecb8fa",
+  "targets": [
+    {
+      "target_id": "codegen.verify",
+      "description": "Verify generated code and documentation are synchronized with their sources",
+      "kind": "codegen",
+      "command_sequence_argv": [
+        ["make", "codegen-all-code"],
+        ["make", "verify-codegen"]
+      ],
+      "path_globs": ["api/**", "pkg/client/**", "config/crds/**", "**/zz_generated.*"]
+    },
+    {
+      "target_id": "unit.cel",
+      "description": "Run unit tests for Kyverno CEL compilation and evaluation packages",
+      "kind": "unit",
+      "command_sequence_argv": [["go", "test", "./pkg/cel/..."]],
+      "path_globs": ["pkg/cel/**"]
+    },
+    {
+      "target_id": "unit.cel.compiler",
+      "description": "Run the scoped Kyverno CEL compiler tests for cel-go API compatibility",
+      "kind": "unit",
+      "command_sequence_argv": [["go", "test", "./pkg/cel/compiler"]],
+      "path_globs": ["go.mod", "go.sum", "pkg/cel/compiler/**"],
+      "execution": {
+        "profile": "offline-go-test.v1",
+        "timeout_seconds": 90,
+        "max_output_bytes": 16000
+      }
+    },
+    {
+      "target_id": "conformance.cel",
+      "description": "Run the CEL Chainsaw conformance suites in a prepared Kubernetes test environment",
+      "kind": "conformance",
+      "command_sequence_argv": [],
+      "path_globs": ["pkg/cel/**", "test/conformance/chainsaw/cel/**"]
+    },
+    {
+      "target_id": "unit.engine",
+      "description": "Run unit tests for the central policy engine",
+      "kind": "unit",
+      "command_sequence_argv": [["go", "test", "./pkg/engine/..."]],
+      "path_globs": ["pkg/engine/**"]
+    },
+    {
+      "target_id": "unit.controllers",
+      "description": "Run unit tests for controller and background-controller packages",
+      "kind": "unit",
+      "command_sequence_argv": [
+        ["go", "test", "./pkg/controllers/...", "./pkg/background/..."]
+      ],
+      "path_globs": ["pkg/controllers/**", "pkg/background/**"]
+    },
+    {
+      "target_id": "cli.local",
+      "description": "Run Kyverno's local CLI fixture suite",
+      "kind": "cli",
+      "command_sequence_argv": [["make", "test-cli-local"]],
+      "path_globs": ["cmd/cli/**", "pkg/cli/**", "test/cli/**"]
+    },
+    {
+      "target_id": "unit.all",
+      "description": "Run the repository unit-test target for dependency or broad-runtime changes",
+      "kind": "unit",
+      "command_sequence_argv": [["make", "test-unit"]],
+      "path_globs": ["go.mod", "go.sum"]
+    },
+    {
+      "target_id": "dependency.review",
+      "description": "Review dependency identity, release notes, module graph, and compatibility signals",
+      "kind": "review",
+      "command_sequence_argv": [],
+      "path_globs": ["go.mod", "go.sum"]
+    },
+    {
+      "target_id": "workflow.security-review",
+      "description": "Review workflow triggers, permissions, secrets, and trust boundaries",
+      "kind": "review",
+      "command_sequence_argv": [],
+      "path_globs": [".github/workflows/**"]
+    },
+    {
+      "target_id": "docs.review",
+      "description": "Review documentation without selecting unrelated runtime suites",
+      "kind": "review",
+      "command_sequence_argv": [],
+      "path_globs": ["docs/**", "**/*.md"]
+    }
+  ]
+}

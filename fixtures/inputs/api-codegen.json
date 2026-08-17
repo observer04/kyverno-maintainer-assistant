@@ -1,0 +1,20 @@
+{
+  "schema_version": "evidence.v1",
+  "fixture_id": "api-codegen",
+  "subject": {"repo": "kyverno/kyverno", "pull_request": 16002, "base_sha": "8888888888888888888888888888888888888888", "head_sha": "a91ca91ca91ca91ca91ca91ca91ca91ca91ca91c"},
+  "provenance": {"collected_at": "2026-08-12T12:07:00Z", "source": "fixture", "delivery_id": "fixture-api-v1", "source_url": null},
+  "author_type": "user",
+  "dependency_bot": false,
+  "title": "feat(api): add field to a v2 policy type",
+  "body": "Adds a backwards-compatible API field and regenerated artifacts.",
+  "changed_files": [
+    {"evidence_id": "file.api", "path": "api/kyverno/v2/spec_types.go", "status": "modified", "additions": 9, "deletions": 0, "previous_path": null, "patch": "+ NewField string `json:\"newField,omitempty\"`", "patch_truncated": false},
+    {"evidence_id": "file.deepcopy", "path": "api/kyverno/v2/zz_generated.deepcopy.go", "status": "modified", "additions": 4, "deletions": 0, "previous_path": null, "patch": null, "patch_truncated": false},
+    {"evidence_id": "file.client", "path": "pkg/client/clientset/versioned/typed/kyverno/v2/fake/fake_policy.go", "status": "modified", "additions": 3, "deletions": 0, "previous_path": null, "patch": null, "patch_truncated": false},
+    {"evidence_id": "file.crd", "path": "config/crds/kyverno.io_policies.yaml", "status": "modified", "additions": 8, "deletions": 0, "previous_path": null, "patch": null, "patch_truncated": false}
+  ],
+  "labels": [{"evidence_id": "label.codegen", "name": "kind/codegen", "source": "fixture"}],
+  "checks": [],
+  "dependencies": [],
+  "missing_evidence": []
+}

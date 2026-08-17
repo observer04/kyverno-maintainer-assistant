@@ -1,0 +1,20 @@
+{
+  "schema_version": "evidence.v1",
+  "fixture_id": "pr-16945-security-dependency",
+  "subject": {"repo": "kyverno/kyverno", "pull_request": 16945, "base_sha": "5555555555555555555555555555555555555555", "head_sha": "a945a945a945a945a945a945a945a945a945a945"},
+  "provenance": {"collected_at": "2026-08-12T12:04:00Z", "source": "fixture", "delivery_id": "fixture-16945-v1", "source_url": "https://github.com/kyverno/kyverno/pull/16945"},
+  "author_type": "bot",
+  "dependency_bot": true,
+  "title": "fix(deps): update signature verification dependency for security advisory",
+  "body": "Patch update is motivated by a published security advisory.",
+  "changed_files": [
+    {"evidence_id": "file.gomod", "path": "go.mod", "status": "modified", "additions": 1, "deletions": 1, "previous_path": null, "patch": "- github.com/sigstore/cosign/v3 v3.1.2\n+ github.com/sigstore/cosign/v3 v3.1.3", "patch_truncated": false},
+    {"evidence_id": "file.gosum", "path": "go.sum", "status": "modified", "additions": 2, "deletions": 2, "previous_path": null, "patch": null, "patch_truncated": false}
+  ],
+  "labels": [{"evidence_id": "label.security", "name": "kind/security", "source": "fixture"}],
+  "checks": [],
+  "dependencies": [
+    {"evidence_id": "dep.cosign", "name": "github.com/sigstore/cosign/v3", "from_version": "v3.1.2", "to_version": "v3.1.3", "update_type": "patch", "direct": true, "security_advisory": true, "release_notes": "Security fix in verification dependency."}
+  ],
+  "missing_evidence": []
+}

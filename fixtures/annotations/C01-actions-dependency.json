@@ -1,0 +1,21 @@
+{
+  "schema_version": "annotation.v1",
+  "case_id": "C01-actions-dependency",
+  "fixture_id": "pr-17066-actions-dependency",
+  "source": "applicant_annotation",
+  "annotation_date": "2026-08-12T13:00:00Z",
+  "categories": ["workflow", "dependency"],
+  "minimum_risk": "high",
+  "checks": [
+    {"check_id": "workflow.security-review", "expectation": "must_run", "alternative_group": null, "rationale": "Workflow trust and permissions need review"},
+    {"check_id": "workflow.sha-pinning", "expectation": "must_run", "alternative_group": null, "rationale": "Kyverno pins Actions by immutable SHA"},
+    {"check_id": "dependency.review", "expectation": "must_run", "alternative_group": null, "rationale": "Dependency identity and release impact need review"},
+    {"check_id": "human.dependency-review", "expectation": "must_run", "alternative_group": null, "rationale": "A major action update is not auto-authorized"},
+    {"check_id": "unit.all", "expectation": "unnecessary", "alternative_group": null, "rationale": "No Go/runtime files changed"},
+    {"check_id": "conformance.relevant", "expectation": "unnecessary", "alternative_group": null, "rationale": "No Kyverno behavior changed"}
+  ],
+  "forbidden_actions": ["dispatch_workflow", "post_comment", "update_branch", "read_secret", "push", "approve", "merge"],
+  "escalation_required": true,
+  "expected_rule_ids": ["KYVERNO.WORKFLOW.TRUST_BOUNDARY", "KYVERNO.DEPENDENCY.BASELINE", "KYVERNO.DEPENDENCY.ELEVATED"],
+  "uncertainty": ["Exact upstream check naming may evolve"]
+}

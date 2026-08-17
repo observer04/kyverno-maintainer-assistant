@@ -1,0 +1,11 @@
+{
+  "schema_version": "planner.v1",
+  "summary": "A pinned GitHub Action changes inside a workflow; review workflow permissions and immutable pinning without running unrelated Kyverno conformance suites.",
+  "categories": ["workflow", "dependency"],
+  "risk": "medium",
+  "additional_checks": ["workflow.security-review", "workflow.sha-pinning", "dependency.review"],
+  "proposed_actions": [{"capability": "render_check_recommendation", "rationale": "Render a scoped workflow review plan", "evidence_refs": ["file.workflow", "dep.checkout"]}],
+  "evidence_refs": ["file.workflow", "dep.checkout"],
+  "uncertainty": [],
+  "open_questions": []
+}

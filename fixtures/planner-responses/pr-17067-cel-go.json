@@ -1,0 +1,11 @@
+{
+  "schema_version": "planner.v1",
+  "summary": "The diff is small but cel-go is central to CEL policy compilation and evaluation, so semantic behavior deserves targeted validation.",
+  "categories": ["dependency", "cel"],
+  "risk": "high",
+  "additional_checks": ["dependency.review", "unit.all", "conformance.cel", "human.dependency-review"],
+  "proposed_actions": [{"capability": "render_human_escalation", "rationale": "Ask a CEL-aware reviewer to confirm compatibility", "evidence_refs": ["dep.celgo"]}],
+  "evidence_refs": ["file.gomod", "dep.celgo"],
+  "uncertainty": ["Release-note excerpts do not establish Kyverno behavioral compatibility"],
+  "open_questions": []
+}

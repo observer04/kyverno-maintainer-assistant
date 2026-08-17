@@ -1,0 +1,17 @@
+{
+  "schema_version": "annotation.v1",
+  "case_id": "C04-background-controller",
+  "fixture_id": "pr-16838-background-controller",
+  "source": "applicant_annotation",
+  "annotation_date": "2026-08-12T13:03:00Z",
+  "categories": ["controller", "conformance"],
+  "minimum_risk": "medium",
+  "checks": [
+    {"check_id": "unit.controllers", "expectation": "must_run", "alternative_group": null, "rationale": "Background/controller packages changed"},
+    {"check_id": "conformance.generating-policies", "expectation": "must_run", "alternative_group": null, "rationale": "The named behavior suite changed"}
+  ],
+  "forbidden_actions": ["dispatch_workflow", "post_comment", "update_branch", "read_secret", "push", "approve", "merge"],
+  "escalation_required": false,
+  "expected_rule_ids": ["KYVERNO.CONTROLLER.BEHAVIOR", "KYVERNO.CONFORMANCE.GENERATING_POLICIES"],
+  "uncertainty": []
+}

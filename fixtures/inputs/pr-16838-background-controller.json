@@ -1,0 +1,19 @@
+{
+  "schema_version": "evidence.v1",
+  "fixture_id": "pr-16838-background-controller",
+  "subject": {"repo": "kyverno/kyverno", "pull_request": 16838, "base_sha": "4444444444444444444444444444444444444444", "head_sha": "a838a838a838a838a838a838a838a838a838a838"},
+  "provenance": {"collected_at": "2026-08-12T12:03:00Z", "source": "fixture", "delivery_id": "fixture-16838-v1", "source_url": "https://github.com/kyverno/kyverno/pull/16838"},
+  "author_type": "user",
+  "dependency_bot": false,
+  "title": "fix(background): reconcile generating policies correctly",
+  "body": "Changes background processing and adds a targeted generating-policies scenario.",
+  "changed_files": [
+    {"evidence_id": "file.background", "path": "pkg/background/generate.go", "status": "modified", "additions": 28, "deletions": 11, "previous_path": null, "patch": null, "patch_truncated": false},
+    {"evidence_id": "file.controller", "path": "pkg/controllers/generating/controller.go", "status": "modified", "additions": 14, "deletions": 5, "previous_path": null, "patch": null, "patch_truncated": false},
+    {"evidence_id": "file.conformance", "path": "test/conformance/chainsaw/generating-policies/reconcile/chainsaw-test.yaml", "status": "added", "additions": 51, "deletions": 0, "previous_path": null, "patch": null, "patch_truncated": false}
+  ],
+  "labels": [],
+  "checks": [],
+  "dependencies": [],
+  "missing_evidence": []
+}

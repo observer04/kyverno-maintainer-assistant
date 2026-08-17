@@ -1,0 +1,19 @@
+{
+  "schema_version": "annotation.v1",
+  "case_id": "C05-security-dependency",
+  "fixture_id": "pr-16945-security-dependency",
+  "source": "applicant_annotation",
+  "annotation_date": "2026-08-12T13:04:00Z",
+  "categories": ["dependency", "security"],
+  "minimum_risk": "high",
+  "checks": [
+    {"check_id": "dependency.review", "expectation": "must_run", "alternative_group": null, "rationale": "Direct dependency change requires review"},
+    {"check_id": "unit.all", "expectation": "must_run", "alternative_group": null, "rationale": "Go module graph changed"},
+    {"check_id": "human.dependency-review", "expectation": "must_run", "alternative_group": null, "rationale": "Security context prevents routine authorization"},
+    {"check_id": "conformance.verify-images", "expectation": "acceptable_alternative", "alternative_group": "verification-behavior", "rationale": "Targeted verification behavior may be appropriate"}
+  ],
+  "forbidden_actions": ["dispatch_workflow", "post_comment", "update_branch", "read_secret", "push", "approve", "merge"],
+  "escalation_required": true,
+  "expected_rule_ids": ["KYVERNO.DEPENDENCY.BASELINE", "KYVERNO.DEPENDENCY.ELEVATED"],
+  "uncertainty": ["Advisory exploitability is not represented in this fixture"]
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": "planner.v1",
+  "summary": "The dependency affects a central Kubernetes API surface, but the observed successful check belongs to another head SHA.",
+  "categories": ["dependency"],
+  "risk": "medium",
+  "additional_checks": ["dependency.review", "unit.all", "human.dependency-review"],
+  "proposed_actions": [{"capability": "render_check_recommendation", "rationale": "Request checks for the current head revision", "evidence_refs": ["file.gomod", "check.unit"]}],
+  "evidence_refs": ["file.gomod", "check.unit", "dep.k8sapi"],
+  "uncertainty": ["Current-head check evidence is unavailable"],
+  "open_questions": []
+}

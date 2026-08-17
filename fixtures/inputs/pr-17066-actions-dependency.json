@@ -1,0 +1,19 @@
+{
+  "schema_version": "evidence.v1",
+  "fixture_id": "pr-17066-actions-dependency",
+  "subject": {"repo": "kyverno/kyverno", "pull_request": 17066, "base_sha": "1111111111111111111111111111111111111111", "head_sha": "a066a066a066a066a066a066a066a066a066a066"},
+  "provenance": {"collected_at": "2026-08-12T12:00:00Z", "source": "fixture", "delivery_id": "fixture-17066-v1", "source_url": "https://github.com/kyverno/kyverno/pull/17066"},
+  "author_type": "bot",
+  "dependency_bot": true,
+  "title": "chore(deps): bump a pinned GitHub Action",
+  "body": "Automated workflow dependency update.",
+  "changed_files": [
+    {"evidence_id": "file.workflow", "path": ".github/workflows/scan-scorecard.yaml", "status": "modified", "additions": 1, "deletions": 1, "previous_path": null, "patch": "- uses: actions/checkout@old\n+ uses: actions/checkout@new", "patch_truncated": false}
+  ],
+  "labels": [{"evidence_id": "label.dependency", "name": "dependencies", "source": "fixture"}],
+  "checks": [],
+  "dependencies": [
+    {"evidence_id": "dep.checkout", "name": "actions/checkout", "from_version": "v6", "to_version": "v7", "update_type": "major", "direct": true, "security_advisory": false, "release_notes": "Pinned GitHub Action update."}
+  ],
+  "missing_evidence": []
+}

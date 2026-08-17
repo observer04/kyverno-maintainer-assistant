@@ -1,0 +1,11 @@
+{
+  "schema_version": "planner.v1",
+  "summary": "CEL compiler semantics, generated CRDs, documentation, and a CEL Chainsaw scenario form one behavior-and-codegen change.",
+  "categories": ["cel", "generated", "conformance", "documentation"],
+  "risk": "high",
+  "additional_checks": ["unit.cel", "codegen.verify", "conformance.cel"],
+  "proposed_actions": [{"capability": "render_check_recommendation", "rationale": "Render the cross-layer validation plan", "evidence_refs": ["file.celcompiler", "file.crd", "file.conformance"]}],
+  "evidence_refs": ["file.celcompiler", "file.crd", "file.conformance"],
+  "uncertainty": [],
+  "open_questions": []
+}

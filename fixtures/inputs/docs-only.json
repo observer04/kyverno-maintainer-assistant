@@ -1,0 +1,17 @@
+{
+  "schema_version": "evidence.v1",
+  "fixture_id": "docs-only",
+  "subject": {"repo": "kyverno/kyverno", "pull_request": 16001, "base_sha": "7777777777777777777777777777777777777777", "head_sha": "d0c5d0c5d0c5d0c5d0c5d0c5d0c5d0c5d0c5d0c5"},
+  "provenance": {"collected_at": "2026-08-12T12:06:00Z", "source": "fixture", "delivery_id": "fixture-docs-v1", "source_url": null},
+  "author_type": "user",
+  "dependency_bot": false,
+  "title": "docs: clarify controller development guide",
+  "body": "Documentation wording only; no generated docs or behavior changes.",
+  "changed_files": [
+    {"evidence_id": "file.docs", "path": "docs/dev/controllers/README.md", "status": "modified", "additions": 12, "deletions": 7, "previous_path": null, "patch": "Clarify controller ownership and terminology.", "patch_truncated": false}
+  ],
+  "labels": [{"evidence_id": "label.docs", "name": "kind/documentation", "source": "fixture"}],
+  "checks": [],
+  "dependencies": [],
+  "missing_evidence": []
+}

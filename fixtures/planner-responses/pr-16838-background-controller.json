@@ -1,0 +1,11 @@
+{
+  "schema_version": "planner.v1",
+  "summary": "Background and generating-controller behavior is covered by package tests plus the directly changed generating-policies suite.",
+  "categories": ["controller", "conformance"],
+  "risk": "medium",
+  "additional_checks": ["unit.controllers", "conformance.generating-policies"],
+  "proposed_actions": [{"capability": "render_check_recommendation", "rationale": "Render controller and asynchronous behavior checks", "evidence_refs": ["file.background", "file.controller", "file.conformance"]}],
+  "evidence_refs": ["file.background", "file.controller", "file.conformance"],
+  "uncertainty": [],
+  "open_questions": []
+}

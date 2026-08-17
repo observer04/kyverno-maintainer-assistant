@@ -1,0 +1,11 @@
+{
+  "schema_version": "planner.v1",
+  "summary": "An API field and generated outputs require compatibility review and regeneration checks.",
+  "categories": ["api", "generated"],
+  "risk": "high",
+  "additional_checks": ["codegen.verify", "unit.all"],
+  "proposed_actions": [{"capability": "render_human_escalation", "rationale": "Require API compatibility review", "evidence_refs": ["file.api", "file.deepcopy"]}],
+  "evidence_refs": ["file.api", "file.deepcopy", "file.client", "file.crd"],
+  "uncertainty": ["Generated outputs alone do not prove that every generator was run"],
+  "open_questions": []
+}

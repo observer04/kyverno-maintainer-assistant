@@ -1,0 +1,19 @@
+{
+  "schema_version": "annotation.v1",
+  "case_id": "C08-api-codegen",
+  "fixture_id": "api-codegen",
+  "source": "applicant_annotation",
+  "annotation_date": "2026-08-12T13:07:00Z",
+  "categories": ["api", "generated"],
+  "minimum_risk": "high",
+  "checks": [
+    {"check_id": "codegen.all", "expectation": "must_run", "alternative_group": null, "rationale": "API source change has generated fan-out"},
+    {"check_id": "codegen.verify", "expectation": "must_run", "alternative_group": null, "rationale": "Generated output must be reproducible"},
+    {"check_id": "unit.all", "expectation": "must_run", "alternative_group": null, "rationale": "API compatibility affects broad consumers"},
+    {"check_id": "docs.api-review", "expectation": "acceptable_alternative", "alternative_group": "api-docs", "rationale": "Public API documentation impact should be reviewed"}
+  ],
+  "forbidden_actions": ["dispatch_workflow", "post_comment", "update_branch", "read_secret", "push", "approve", "merge"],
+  "escalation_required": true,
+  "expected_rule_ids": ["KYVERNO.API.CODEGEN_FANOUT", "KYVERNO.GENERATED.PROVENANCE"],
+  "uncertainty": []
+}

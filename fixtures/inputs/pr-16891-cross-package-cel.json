@@ -1,0 +1,19 @@
+{
+  "schema_version": "evidence.v1",
+  "fixture_id": "pr-16891-cross-package-cel",
+  "subject": {"repo": "kyverno/kyverno", "pull_request": 16891, "base_sha": "6666666666666666666666666666666666666666", "head_sha": "a891a891a891a891a891a891a891a891a891a891"},
+  "provenance": {"collected_at": "2026-08-12T12:05:00Z", "source": "fixture", "delivery_id": "fixture-16891-v1", "source_url": "https://github.com/kyverno/kyverno/pull/16891"},
+  "author_type": "user",
+  "dependency_bot": false,
+  "title": "fix(cel): align compiler and engine evaluation",
+  "body": "Cross-package CEL change affects compilation and evaluation semantics.",
+  "changed_files": [
+    {"evidence_id": "file.compiler", "path": "pkg/cel/compiler/compiler.go", "status": "modified", "additions": 17, "deletions": 9, "previous_path": null, "patch": null, "patch_truncated": false},
+    {"evidence_id": "file.engine", "path": "pkg/cel/engine/request.go", "status": "modified", "additions": 21, "deletions": 4, "previous_path": null, "patch": null, "patch_truncated": false},
+    {"evidence_id": "file.engine_test", "path": "pkg/cel/engine/request_test.go", "status": "modified", "additions": 38, "deletions": 1, "previous_path": null, "patch": null, "patch_truncated": false}
+  ],
+  "labels": [],
+  "checks": [],
+  "dependencies": [],
+  "missing_evidence": []
+}

@@ -1,0 +1,105 @@
+{
+  "schema_version": "evidence.v1",
+  "fixture_id": "pr-17067-cel-go",
+  "subject": {
+    "repo": "kyverno/kyverno",
+    "pull_request": 17067,
+    "base_sha": "2be74f07685fa6d73cf9bc0c78f9210a7471ae6c",
+    "head_sha": "c5ee06b1c6a3ea99723cd4e9a41648ec6a6c4ee1"
+  },
+  "provenance": {
+    "collected_at": "2026-08-17T10:00:00Z",
+    "source": "github_readonly",
+    "delivery_id": "github-pr-17067-c5ee06b1",
+    "source_url": "https://github.com/kyverno/kyverno/pull/17067"
+  },
+  "author_type": "bot",
+  "dependency_bot": true,
+  "title": "chore(deps): bump github.com/google/cel-go from 0.30.0 to 0.31.0",
+  "body": "Bumps github.com/google/cel-go from 0.30.0 to 0.31.0. The saved fixture intentionally omits the long generated Dependabot release-note body.",
+  "changed_files": [
+    {
+      "evidence_id": "file.gomod",
+      "path": "go.mod",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "previous_path": null,
+      "patch": "@@ -249,7 +249,7 @@ require (\n \tgithub.com/golang/protobuf v1.5.4 // indirect\n \tgithub.com/golang/snappy v1.0.0 // indirect\n \tgithub.com/google/btree v1.1.3 // indirect\n-\tgithub.com/google/cel-go v0.30.0\n+\tgithub.com/google/cel-go v0.31.0\n \tgithub.com/google/certificate-transparency-go v1.3.3 // indirect",
+      "patch_truncated": false
+    },
+    {
+      "evidence_id": "file.gosum",
+      "path": "go.sum",
+      "status": "modified",
+      "additions": 2,
+      "deletions": 2,
+      "previous_path": null,
+      "patch": "@@ -480,8 +480,8 @@\n-github.com/google/cel-go v0.30.0 h1:ll54AkzKunWkBn9wSoiUXbFZXYZTkdJGNXTBXUoolGo=\n-github.com/google/cel-go v0.30.0/go.mod h1:X0bD6iVNR8pkROSOoHVdgTkzmRcosof7WQqCD6wcMc8=\n+github.com/google/cel-go v0.31.0 h1:H0bhpFTqOvmHrBGrWKp7ZlhBm5Hh8PYUEXnwxT1LL7A=\n+github.com/google/cel-go v0.31.0/go.mod h1:X0bD6iVNR8pkROSOoHVdgTkzmRcosof7WQqCD6wcMc8=",
+      "patch_truncated": false
+    }
+  ],
+  "labels": [
+    {"evidence_id": "label.dependency", "name": "dependencies", "source": "github"},
+    {"evidence_id": "label.go", "name": "go", "source": "github"},
+    {"evidence_id": "label.sizexs", "name": "size:XS", "source": "github"},
+    {
+      "evidence_id": "label.kinddependency",
+      "name": "kind/dependencies",
+      "source": "github"
+    }
+  ],
+  "checks": [
+    {
+      "evidence_id": "check.unit",
+      "name": "Unit tests",
+      "conclusion": "success",
+      "head_sha": "c5ee06b1c6a3ea99723cd4e9a41648ec6a6c4ee1"
+    },
+    {
+      "evidence_id": "check.cli",
+      "name": "CLI tests",
+      "conclusion": "success",
+      "head_sha": "c5ee06b1c6a3ea99723cd4e9a41648ec6a6c4ee1"
+    },
+    {
+      "evidence_id": "check.codegen",
+      "name": "Verify codegen (code)",
+      "conclusion": "success",
+      "head_sha": "c5ee06b1c6a3ea99723cd4e9a41648ec6a6c4ee1"
+    },
+    {
+      "evidence_id": "check.codegen-docs",
+      "name": "Verify codegen (docs)",
+      "conclusion": "success",
+      "head_sha": "c5ee06b1c6a3ea99723cd4e9a41648ec6a6c4ee1"
+    },
+    {
+      "evidence_id": "check.sha",
+      "name": "Ensure SHA pinned actions",
+      "conclusion": "success",
+      "head_sha": "c5ee06b1c6a3ea99723cd4e9a41648ec6a6c4ee1"
+    },
+    {
+      "evidence_id": "check.dco",
+      "name": "DCO",
+      "conclusion": "success",
+      "head_sha": "c5ee06b1c6a3ea99723cd4e9a41648ec6a6c4ee1"
+    }
+  ],
+  "dependencies": [
+    {
+      "evidence_id": "dep.celgo",
+      "name": "github.com/google/cel-go",
+      "from_version": "v0.30.0",
+      "to_version": "v0.31.0",
+      "update_type": "minor",
+      "direct": true,
+      "security_advisory": false,
+      "release_notes": null
+    }
+  ],
+  "missing_evidence": [
+    "Generated Dependabot release-note body is omitted from this bounded saved capture"
+  ]
+}
